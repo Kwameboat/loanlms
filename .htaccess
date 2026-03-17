@@ -1,0 +1,11 @@
+# If Laravel is installed at document root (not inside /public),
+# this .htaccess redirects all requests to the public folder.
+# Use this ONLY if you cannot set the document root to /public in cPanel.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect to /public if not already accessing it
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ /public/$1 [L,QSA]
+</IfModule>

@@ -1,1 +1,123 @@
-{\n  "version": 2,\n  "builds": [{\n    "src": "public/index.php",\n    "use": "@vercel/php"\n  }],\n  "routes": [{\n    "src": "/(.*)",\n    "dest": "/public/index.php"\n  }]\n}
+{
+    "version": 2,
+    "name": "bigcash-lms",
+    "framework": null,
+    "buildCommand": "bash build.sh",
+    "outputDirectory": "public",
+    "functions": {
+        "api/index.php": {
+            "runtime": "vercel-php@0.6.0",
+            "maxDuration": 30,
+            "memory": 1024
+        }
+    },
+    "crons": [
+        {
+            "path": "/api/cron/mark-overdue",
+            "schedule": "0 1 * * *"
+        },
+        {
+            "path": "/api/cron/send-reminders",
+            "schedule": "0 8 * * *"
+        },
+        {
+            "path": "/api/cron/cleanup",
+            "schedule": "0 * * * *"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(css|js|icons|screenshots|images)/(.+)",
+            "headers": {
+                "cache-control": "public, max-age=31536000, immutable"
+            },
+            "dest": "/public/$1/$2"
+        },
+        {
+            "src": "/service-worker\\.js",
+            "headers": {
+                "cache-control": "no-cache, no-store, must-revalidate",
+                "service-worker-allowed": "/"
+            },
+            "dest": "/public/service-worker.js"
+        },
+        {
+            "src": "/manifest\\.json",
+            "headers": {
+                "cache-control": "public, max-age=86400",
+                "content-type": "application/manifest+json"
+            },
+            "dest": "/public/manifest.json"
+        },
+        {
+            "src": "/offline\\.html",
+            "dest": "/public/offline.html"
+        },
+        {
+            "src": "/favicon\\.ico",
+            "dest": "/public/favicon.ico"
+        },
+        {
+            "src": "/(.*\\.(png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|otf|eot))",
+            "dest": "/public/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        }
+    ],
+    "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                {
+                    "key": "X-Content-Type-Options",
+                    "value": "nosniff"
+                },
+                {
+                    "key": "X-Frame-Options",
+                    "value": "SAMEORIGIN"
+                },
+                {
+                    "key": "X-XSS-Protection",
+                    "value": "1; mode=block"
+                },
+                {
+                    "key": "Referrer-Policy",
+                    "value": "strict-origin-when-cross-origin"
+                },
+                {
+                    "key": "Permissions-Policy",
+                    "value": "push=(), notifications=(self)"
+                }
+            ]
+        },
+        {
+            "source": "/service-worker.js",
+            "headers": [
+                {
+                    "key": "Service-Worker-Allowed",
+                    "value": "/"
+                },
+                {
+                    "key": "Cache-Control",
+                    "value": "no-cache"
+                }
+            ]
+        }
+    ],
+    "env": {
+        "APP_NAME": "Big Cash",
+        "APP_ENV": "production",
+        "APP_DEBUG": "false",
+        "LOG_CHANNEL": "stderr",
+        "CACHE_DRIVER": "array",
+        "SESSION_DRIVER": "cookie",
+        "QUEUE_CONNECTION": "sync",
+        "FILESYSTEM_DISK": "r2",
+        "DB_CONNECTION": "pgsql"
+    },
+    "regions": [
+        "iad1"
+    ]
+}
