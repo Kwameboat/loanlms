@@ -27,6 +27,9 @@ yarn-error.log
 /public/icons/*.png
 !/public/icons/.gitkeep
 
+# Distribution archives
+*.zip
+
 # Python
 __pycache__/
 *.pyc
