@@ -1,0 +1,1 @@
+{\n  "version": 2,\n  "builds": [{\n    "src": "public/index.php",\n    "use": "@vercel/php"\n  }],\n  "routes": [{\n    "src": "/(.*)",\n    "dest": "/public/index.php"\n  }]\n}
