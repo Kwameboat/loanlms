@@ -131,8 +131,8 @@ php artisan webpush:vapid
 
 ## Step 7 — Deploy to Vercel
 
-1. [vercel.com/new](https://vercel.com/new) → Import your GitHub repo
-2. Vercel auto-detects `vercel.json`
+1. [vercel.com/new](https://vercel.com/new) → Import your GitHub repo under the **kwameboats-projects** account
+2. Vercel auto-detects `vercel.json` (scope is already set to `kwameboats-projects`)
 3. Set all environment variables below **before** clicking Deploy
 
 ### Required Environment Variables
@@ -144,7 +144,7 @@ APP_NAME                         Big Cash
 APP_ENV                          production
 APP_KEY                          base64:YOUR_KEY_HERE
 APP_DEBUG                        false
-APP_URL                          https://bigcash.vercel.app
+APP_URL                          https://bigcash-lms.vercel.app
 
 LOG_CHANNEL                      stderr
 LOG_LEVEL                        error
