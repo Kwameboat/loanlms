@@ -1,6 +1,7 @@
 {
     "version": 2,
     "name": "bigcash-lms",
+    "scope": "kwameboats-projects",
     "framework": null,
     "buildCommand": "bash build.sh",
     "outputDirectory": "public",
@@ -110,6 +111,7 @@
         "APP_NAME": "Big Cash",
         "APP_ENV": "production",
         "APP_DEBUG": "false",
+        "APP_URL": "https://bigcash-lms.vercel.app",
         "LOG_CHANNEL": "stderr",
         "CACHE_DRIVER": "array",
         "SESSION_DRIVER": "cookie",
