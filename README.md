@@ -20,7 +20,7 @@ Login: `admin@bigcash.com` / `Password@123`
 | Method | Guide |
 |---|---|
 | Vercel (serverless) | [VERCEL_DEPLOY.md](VERCEL_DEPLOY.md) |
-| cPanel shared hosting | [README_CPANEL.md](README_CPANEL.md) |
+| cPanel shared hosting | [INSTALL.md](INSTALL.md) |
 
 ## Default Accounts
 
